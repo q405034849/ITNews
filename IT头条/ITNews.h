@@ -28,6 +28,10 @@
  */
 @property (nonatomic, copy) NSString *addtime;
 /**
+ * 新闻时间
+ */
+@property (nonatomic, copy, readonly) NSString *newsTime;
+/**
  * 文档日期 - know how 1464940683 标示时间通常 距离 1970-01-01 的秒数！
  */
 @property (nonatomic, copy, readonly) NSString *docDate;

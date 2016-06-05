@@ -9,7 +9,9 @@
 #import "ITNewsListViewController.h"
 #import "ITNews.h"
 #import "PullupView.h"
+#import "ITNewsCell.h"
 
+static NSString *cellId = @"cellId";
 @interface ITNewsListViewController ()
 
 /**
@@ -26,6 +28,13 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    // 设置表格行高
+    self.tableView.rowHeight = 110;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // 注册原型 cell
+    [self.tableView registerNib:[UINib nibWithNibName:@"ITNewsCell" bundle:nil] forCellReuseIdentifier:cellId];
     
     PullupView *pullup = [PullupView pullupView];
     
@@ -119,9 +128,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
+    ITNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
     
-    cell.textLabel.text = _newsList[indexPath.row].title;
+//    cell.textLabel.text = _newsList[indexPath.row].title;
+    cell.model = _newsList[indexPath.row];
     
     return cell;
 }
